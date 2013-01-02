@@ -24,12 +24,12 @@
       <h1>{{state}}</h1>
       <ul>
         {{#issues}}
-          <li>{{.}}</li>
+          <li>{{name}} <small>{{owned_by}}</small></li>
         {{/issues}}
       </ul>
     </section>
   </script>
-  
+
   <div class="tasks" id="tasks"></div>
   
   <script src="vendor/mustache.js"></script>
