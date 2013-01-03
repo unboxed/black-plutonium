@@ -7,6 +7,8 @@ h1 {
 
   background-color: #333;
   color: #fff;
+
+  text-transform: capitalize;
 }
 
 .tasks {
