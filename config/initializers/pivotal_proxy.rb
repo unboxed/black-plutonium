@@ -8,6 +8,7 @@ class PivotalProxy < Rack::Proxy
     env["rack.url_scheme"] = "https"
     # env['HTTP_X_FORWARDED_PORT'] = '80'
     env["HTTP_HOST"] = "www.pivotaltracker.com"
+    env.delete("HTTP_ACCEPT_ENCODING")
     # pivotal tracker api token needs to be set in the javascript or here
     # env["HTTP_X_TrackerToken"] = ""
     env
