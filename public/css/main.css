@@ -23,7 +23,7 @@ h1 {
 
   border: 1px solid red;
 
-  overflow: auto;
+  overflow: hidden;
 }
 
 li {
