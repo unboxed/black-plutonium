@@ -28,8 +28,12 @@ define('main', function () {
 
   setInterval(update, config.refreshRate);
 
+  window.addEventListener('hashchange', update);
+
   function update () {
-    fetch(handleFetch);
+    if (window.location.hash) {
+      fetch(window.location.hash.substr(2), handleFetch);
+    }
   }
 
   function handleFetch (issues) {

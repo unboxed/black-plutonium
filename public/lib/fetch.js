@@ -2,8 +2,8 @@ define('fetch', (function () {
   var request = require('request'),
       config = require('config');
 
-  return function (callback) {
-    request('/projects/720909/stories', success);
+  return function (project, callback) {
+    request('/projects/' + project + '/stories', success);
 
     function success (doc) {
       var node,
@@ -19,7 +19,7 @@ define('fetch', (function () {
       while (node = results.iterateNext()) {
         state = getValue(node, 'current_state');
 
-        if (state) {
+        if (issues[state]) {
           issues[state].push({
             name: getValue(node, 'name'),
             owned_by: getValue(node, 'owned_by initials'),

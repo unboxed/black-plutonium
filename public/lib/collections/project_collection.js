@@ -4,6 +4,7 @@ define('ProjectCollection', (function () {
         fetch: function () {
           var self = this;
           request('/projects', function (doc) {
+            //TODO this looks a lot like fetch.js
             var results = doc.evaluate('/projects/project', doc, null, XPathResult.ANY_TYPE, null),
                 node,
                 projects = [];
