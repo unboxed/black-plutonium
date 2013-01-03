@@ -23,7 +23,8 @@ define('fetch', (function () {
           issues[state].push({
             name: getValue(node, 'name'),
             owned_by: getValue(node, 'owned_by initials'),
-            estimate: getValue(node, 'estimate')
+            estimate: getValue(node, 'estimate'),
+            story_type: getValue(node, 'story_type') 
           });
         }
       }
