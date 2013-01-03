@@ -19,8 +19,8 @@ define('fetch', (function () {
       }
 
       while (node = results.iterateNext()) {
-        state = match(getValue(node, 'labels'), config.labels);
-        label = match(getValue(node, 'current_state'), config.states);
+        label = match(getValue(node, 'labels'), config.labels);
+        state = match(getValue(node, 'current_state'), config.states);
 
         column = label ? label : state;
 
