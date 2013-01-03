@@ -1,7 +1,15 @@
 define('main', function () {
-  var columnView = require('columnView');
+  var columnView = require('columnView'),
+      config = require('config'),
+      fetch = require('fetch');
 
-  require('fetch')(handleFetch);
+  update();
+
+  setInterval(update, config.refreshRate);
+
+  function update () {
+    fetch(handleFetch);
+  }
 
   function handleFetch (issues) {
     var tasks = document.getElementById('tasks'),
