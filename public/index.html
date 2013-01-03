@@ -28,7 +28,7 @@
           <li>
             {{name}}
             <span class="estimate">{{estimate}}</span>
-            <small>({{owned_by}})</small>
+            {{#owned_by}}<small>({{owned_by}})</small>{{/owned_by}}
           </li>
         {{/issues}}
       </ul>
