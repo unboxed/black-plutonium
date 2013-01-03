@@ -22,7 +22,8 @@ define('fetch', (function () {
         if (state) {
           issues[state].push({
             name: getValue(node, 'name'),
-            owned_by: getValue(node, 'owned_by initials')
+            owned_by: getValue(node, 'owned_by initials'),
+            estimate: getValue(node, 'estimate')
           });
         }
       }

@@ -24,7 +24,11 @@
       <h1>{{state}}</h1>
       <ul>
         {{#issues}}
-          <li>{{name}} <small>{{owned_by}}</small></li>
+          <li>
+            {{name}}
+            <span class="estimate">{{estimate}}</span>
+            <small>({{owned_by}})</small>
+          </li>
         {{/issues}}
       </ul>
     </section>
