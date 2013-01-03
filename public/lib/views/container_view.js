@@ -1,6 +1,6 @@
 define('ContainerView', require('app').View.extend({
   events: {
-    'mouseenter h1': 'showSettings',
+    'mouseenter header': 'showSettings',
     'mouseenter .column ul': 'hideSettings',
     'mouseleave': 'hideSettings'
   },

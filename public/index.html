@@ -21,7 +21,10 @@
 </head>
 <body>
   <script type="text/html" data-name="column">
-    <h1>{{state}}</h1>
+    <header>
+      <h1>{{state}}</h1>
+      {{issue_count}} stories, {{total_points}} points
+    </header>
     <ul>
       {{#issues}}
         <li class="{{story_type}}">
@@ -67,9 +70,7 @@
   <script src="/lib/app.js"></script>
   <script src="/lib/config.js"></script>
   <script src="/lib/tmpl.js"></script>
-  <script src="/lib/render.js"></script>
   <script src="/lib/settings.js"></script>
-  <script src="/lib/fetch.js"></script>
   <script src="/lib/collections/story_collection.js"></script>
   <script src="/lib/collections/project_collection.js"></script>
   <script src="/lib/views/container_view.js"></script>

@@ -4,13 +4,17 @@ html, body {
   overflow: hidden;
 }
 
-h1 {
+header {
   padding: 5px;
 
   background-color: #333;
   color: #fff;
 
   text-transform: capitalize;
+}
+
+h1 {
+  display: inline;
 }
 
 .tasks {
