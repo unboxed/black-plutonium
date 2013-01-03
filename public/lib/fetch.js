@@ -3,14 +3,14 @@ define('fetch', (function () {
       config = require('config');
 
   return function (project, callback) {
-    request('/projects/' + project + '/stories', success);
+    request('/projects/' + project + '/iterations/current_backlog', success);
 
     function success (doc) {
       var node,
           issues = {},
           columns = config.states,
           state,
-          results = doc.evaluate('/stories/story', doc, null, XPathResult.ANY_TYPE, null);
+          results = doc.evaluate('/iterations/iteration/stories/story', doc, null, XPathResult.ANY_TYPE, null);
 
       for (var i = 0, l = columns.length; i < l; i++) {
         issues[columns[i]] = [];
