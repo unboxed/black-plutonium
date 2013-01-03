@@ -4,9 +4,15 @@ define('ContainerView', require('app').View.extend({
     'mouseenter .column ul': 'hideSettings',
     'mouseleave': 'hideSettings'
   },
+  initialize: function () {
+    this.model.on('reset', this.render, this);
+  },
   render: function () {
-    this.offset = this.$el.find('.settings').height();
-
+    var self = this;
+    // Push to the end of the execution stack
+    setTimeout(function () {
+      self.offset = self.$el.find('.settings').height();
+    }, 0);
     return this;
   },
   hideSettings: function () {

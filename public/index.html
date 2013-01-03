@@ -21,18 +21,16 @@
 </head>
 <body>
   <script type="text/html" data-name="column">
-    <section class="column">
-      <h1>{{state}}</h1>
-      <ul>
-        {{#issues}}
-          <li class="{{story_type}}">
-            {{name}}
-            <span class="estimate">{{estimate}}</span>
-            {{#owned_by}}<small>({{owned_by}})</small>{{/owned_by}}
-          </li>
-        {{/issues}}
-      </ul>
-    </section>
+    <h1>{{state}}</h1>
+    <ul>
+      {{#issues}}
+        <li class="{{story_type}}">
+          {{name}}
+          <span class="estimate">{{estimate}}</span>
+          {{#owned_by}}<small>({{owned_by}})</small>{{/owned_by}}
+        </li>
+      {{/issues}}
+    </ul>
   </script>
 
   <script type="text/html" data-name="settingsForm">
@@ -77,6 +75,7 @@
   <script src="/lib/views/container_view.js"></script>
   <script src="/lib/views/project_list_view.js"></script>
   <script src="/lib/views/settings_form_view.js"></script>
+  <script src="/lib/views/column_view.js"></script>
   <script src="/lib/main.js"></script>
   <script>
   require('main')();
