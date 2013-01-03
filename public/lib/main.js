@@ -1,10 +1,19 @@
 define('main', function () {
-  var render = require('render'),
-      config = require('config'),
+  var config = require('config'),
+      render = require('render'),
+      app = require('app'),
+      SettingsFormView = require('SettingsFormView'),
+      settings = require('settings'),
       fetch = require('fetch');
 
   update();
 
+  new SettingsFormView({
+    el: '#settings-form',
+    model: settings
+  }).render();
+
+  settings.on('change:token', update);
   setInterval(update, config.refreshRate);
 
   function update () {
@@ -12,6 +21,7 @@ define('main', function () {
   }
 
   function handleFetch (issues) {
+    // TODO make columns Backbone views
     var tasks = document.getElementById('tasks'),
         el;
 

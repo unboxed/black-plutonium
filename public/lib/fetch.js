@@ -3,7 +3,7 @@ define('fetch', (function () {
       config = require('config');
 
   return function (callback) {
-    request(success, error);
+    request('/projects/720909/stories', success);
 
     function success (doc) {
       var node,
@@ -31,10 +31,6 @@ define('fetch', (function () {
       callback(issues);
     }
   };
-
-  function error () {
-    alert("It seems we're having trouble getting a response from pivotal tracker.");
-  }
 
   function getValue (node, name) {
     node = node.querySelector(name);
