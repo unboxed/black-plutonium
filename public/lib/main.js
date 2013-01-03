@@ -9,7 +9,8 @@ define('main', function () {
       projects = new ProjectCollection(),
       fetch = require('fetch');
 
-  update();
+  updateStories();
+  updateProjects();
 
   new SettingsFormView({
     el: '#settings-form',
@@ -21,18 +22,22 @@ define('main', function () {
     model: projects
   });
 
-  settings.on('change:token', projects.fetch, projects);
-  settings.on('change:token', update);
-  
-  projects.fetch();
+  settings.on('change:token', updateProjects);
+  settings.on('change:token', updateStories);
 
-  setInterval(update, config.refreshRate);
+  setInterval(updateStories, config.refreshRate);
 
-  window.addEventListener('hashchange', update);
+  window.addEventListener('hashchange', updateStories);
 
-  function update () {
-    if (window.location.hash) {
+  function updateStories () {
+    if (window.location.hash && settings.get('token')) {
       fetch(window.location.hash.substr(2), handleFetch);
+    }
+  }
+
+  function updateProjects () {
+    if (settings.get('token')) {
+      projects.fetch();
     }
   }
 
