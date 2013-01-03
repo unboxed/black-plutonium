@@ -3,7 +3,7 @@ define('ColumnView', require('app').View.extend({
   className: 'column',
   template: require('tmpl')('column'),
   initialize: function () {
-    this.model.on('reset', this.render, this);
+    this.model.on('update', this.render, this);
   },
   presenter: function () {
     var items = this.model.where({ state: this.options.state });
@@ -15,7 +15,7 @@ define('ColumnView', require('app').View.extend({
       }),
       issue_count: items.length,
       total_points: _.reduce(items, function (memo, m) {
-        return memo + (parseInt(m.get('estimate'), 10) || 0);
+        return memo + (Math.max(0, parseInt(m.get('estimate'), 10)) || 0);
       }, 0)
     };
   }

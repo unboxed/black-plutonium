@@ -5,7 +5,7 @@ define('ContainerView', require('app').View.extend({
     'mouseleave': 'hideSettings'
   },
   initialize: function () {
-    this.model.on('reset', this.render, this);
+    this.model.on('update', this.render, this);
   },
   render: function () {
     var self = this;

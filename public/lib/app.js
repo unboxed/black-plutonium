@@ -48,8 +48,13 @@ define('app', (function (Backbone, store) {
             items.push(item);
           }
           item = null;
-          self.reset(items);
+          self.update(items);
         });
+      },
+      update: function (data) {
+        Backbone.Collection.prototype.update.call(this, data);
+        this.trigger('update');
+        return this;
       }
     }),
     View: Backbone.View.extend({
