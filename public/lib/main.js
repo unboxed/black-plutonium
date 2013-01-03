@@ -1,5 +1,5 @@
 define('main', function () {
-  var columnView = require('columnView'),
+  var render = require('render'),
       config = require('config'),
       fetch = require('fetch');
 
@@ -13,12 +13,12 @@ define('main', function () {
 
   function handleFetch (issues) {
     var tasks = document.getElementById('tasks'),
-        column;
+        el;
 
     tasks.innerHTML = '';
-    for (prop in issues) {
-      column = columnView(prop, issues[prop]);
-      tasks.appendChild(column.el);
+    for (state in issues) {
+      el = render('column', { state: state, issues: issues[state] });
+      tasks.appendChild(el);
     }
   }
 });
