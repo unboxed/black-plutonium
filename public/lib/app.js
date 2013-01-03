@@ -1,4 +1,6 @@
 define('app', (function (Backbone, store) {
+  var request = require('request');
+
   Backbone.sync = function (method, model) {
     if ('read' == method) {
       model.set(
@@ -19,14 +21,53 @@ define('app', (function (Backbone, store) {
 
   return {
     Model: Backbone.Model,
-    Collection: Backbone.Collection,
+    Collection: Backbone.Collection.extend({
+      url: '/',
+      rootQuery: '/',
+      attributeMap: {
+        id: 'id',
+        name: 'name'
+      },
+      fetch: function () {
+        var self = this;
+        request(this.url(), function (doc) {
+          var results = doc.evaluate(self.rootQuery, doc, null, XPathResult.ANY_TYPE, null),
+              node,
+              attr,
+              item,
+              map = self.attributeMap,
+              items = [];
+
+          while (node = results.iterateNext()) {
+            item = {};
+            for (attr in map) {
+              if (map.hasOwnProperty(attr)) {
+                item[attr] = getValue(node, map[attr]);
+              }
+            }
+            items.push(item);
+          }
+          item = null;
+          self.reset(items);
+        });
+      }
+    }),
     View: Backbone.View.extend({
+      presenter: function () {
+        return this.model.toJSON();
+      },
       render: function () {
-        this.el.innerHTML = Mustache.render(this.template, this.model.toJSON());
-        
+        this.el.innerHTML = Mustache.render(this.template, this.presenter());
+
         return this;
       }
     })
   };
+
+  function getValue (node, name) {
+    node = node.querySelector(name);
+
+    return node ? node.textContent : '';
+  }
 
 }(Backbone, window.localStorage)));
