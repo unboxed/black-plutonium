@@ -23,7 +23,7 @@ define('app', (function (Backbone, store) {
     View: Backbone.View.extend({
       render: function () {
         this.el.innerHTML = Mustache.render(this.template, this.model.toJSON());
-      
+        
         return this;
       }
     })

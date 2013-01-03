@@ -43,7 +43,17 @@
     <button type="submit">Save</button>
   </script>
 
+  <script type="text/html" data-name="projectList">
+    <ul>
+      {{#.}}
+        <li>{{name}}</li>
+      {{/.}}
+    </ul>
+  </script>
+
   <form id="settings-form"></form>
+
+  <div id="project-list"></div>
 
   <div class="tasks" id="tasks"></div>
   
@@ -56,9 +66,11 @@
   <script src="/lib/tmpl.js"></script>
   <script src="/lib/render.js"></script>
   <script src="/lib/settings.js"></script>
-  <script src="/lib/views/settings_form_view.js"></script>
   <script src="/lib/request.js"></script>
   <script src="/lib/fetch.js"></script>
+  <script src="/lib/collections/project_collection.js"></script>
+  <script src="/lib/views/project_list_view.js"></script>
+  <script src="/lib/views/settings_form_view.js"></script>
   <script src="/lib/main.js"></script>
   <script>
   require('main')();

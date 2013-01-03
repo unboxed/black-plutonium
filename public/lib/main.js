@@ -4,6 +4,9 @@ define('main', function () {
       app = require('app'),
       SettingsFormView = require('SettingsFormView'),
       settings = require('settings'),
+      ProjectCollection = require('ProjectCollection'),
+      ProjectListView = require('ProjectListView'),
+      projects = new ProjectCollection(),
       fetch = require('fetch');
 
   update();
@@ -13,7 +16,16 @@ define('main', function () {
     model: settings
   }).render();
 
+  new ProjectListView({
+    el: '#project-list',
+    model: projects
+  });
+
+  settings.on('change:token', projects.fetch, projects);
   settings.on('change:token', update);
+  
+  projects.fetch();
+
   setInterval(update, config.refreshRate);
 
   function update () {
