@@ -6,8 +6,12 @@ define('main', function () {
       settings = require('settings'),
       ProjectCollection = require('ProjectCollection'),
       ProjectListView = require('ProjectListView'),
+      ContainerView = require('ContainerView'),
       projects = new ProjectCollection(),
-      fetch = require('fetch');
+      fetch = require('fetch'),
+      containerView = new ContainerView({
+        el: '#container'
+      });
 
   updateStories();
   updateProjects();
@@ -24,7 +28,8 @@ define('main', function () {
 
   settings.on('change:token', updateProjects);
   settings.on('change:token', updateStories);
-
+  projects.on('reset', containerView.render, containerView);
+  
   setInterval(updateStories, config.refreshRate);
 
   window.addEventListener('hashchange', updateStories);
