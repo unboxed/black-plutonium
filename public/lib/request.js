@@ -21,6 +21,6 @@ define('request', (function () {
   };
 
   function error () {
-    alert("It seems we're having trouble getting a response from pivotal tracker.");
+    alert("It seems we're having trouble getting a response from pivotal tracker. Please check that you have entered a valid correct Pivotal API token");
   }
 }()));
