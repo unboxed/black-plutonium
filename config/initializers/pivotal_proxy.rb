@@ -2,7 +2,25 @@
 # see http://stackoverflow.com/questions/11057905/how-do-i-use-rackproxy-within-rails-to-proxy-requests-to-a-specific-path-to-an
 require 'rack-proxy'
 
-class Proxy < Rack::Proxy
+class PivotalProxy < Rack::Proxy
+
+  def rewrite_env(env)
+    env["rack.url_scheme"] = "https"
+    # env['HTTP_X_FORWARDED_PORT'] = '80'
+    env["HTTP_HOST"] = "www.pivotaltracker.com"
+    # pivotal tracker api token needs to be set in the javascript or here
+    # env["HTTP_X_TrackerToken"] = ""
+    env
+  end
+
+  def rewrite_response(triplet)
+    status, headers, body = triplet
+    headers.reject! {|k,v| k.downcase == 'status' }
+    [status, headers, body]
+  end
+end
+
+class WrappingPivotalProxy < PivotalProxy
   def initialize(app)
     @app = app
   end
@@ -21,12 +39,9 @@ class Proxy < Rack::Proxy
   def rewrite_env(env)
     request = Rack::Request.new(env)
     if request.path =~ %r{^/services}
-      env["rack.url_scheme"] = "https"
-      # env['HTTP_X_FORWARDED_PORT'] = '80'
-      env["HTTP_HOST"] = "www.pivotaltracker.com"
-      # pivotal tracker api token needs to be set in the javascript or here
-      # env["HTTP_X_TrackerToken"] = ""
+      super
+    else
+      env
     end
-    env
   end
 end
