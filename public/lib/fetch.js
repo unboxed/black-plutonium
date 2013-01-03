@@ -8,10 +8,8 @@ define('fetch', (function () {
     function success (doc) {
       var node,
           issues = {},
-          columns = config.states.concat(config.labels),
-          column,
+          columns = config.states,
           state,
-          labels,
           results = doc.evaluate('/stories/story', doc, null, XPathResult.ANY_TYPE, null);
 
       for (var i = 0, l = columns.length; i < l; i++) {
@@ -19,13 +17,10 @@ define('fetch', (function () {
       }
 
       while (node = results.iterateNext()) {
-        label = match(getValue(node, 'labels'), config.labels);
-        state = match(getValue(node, 'current_state'), config.states);
+        state = getValue(node, 'current_state');
 
-        column = label ? label : state;
-
-        if (column) {
-          issues[column].push({
+        if (state) {
+          issues[state].push({
             name: getValue(node, 'name'),
             owned_by: getValue(node, 'owned_by initials')
           });
@@ -46,16 +41,4 @@ define('fetch', (function () {
     return node ? node.textContent : '';
   }
 
-  function match (str, matchers) {
-    var i = 0,
-        l = matchers.length;
-
-    for (; i < l; i++) {
-      if (str.indexOf(matchers[i]) != -1) {
-        return matchers[i];
-      }
-    }
-
-    return null;
-  }
 }()));
