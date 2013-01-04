@@ -52,6 +52,12 @@
     </ul>
   </script>
 
+  <script type="text/html" data-name="footer">
+    {{#project}}
+      <h1>{{name}}</h1>
+    {{/project}}
+  </script>
+
   <div id="container" class="container">
     <div id="settings" class="settings">
       <form id="settings-form" class="settings-form"></form>
@@ -61,6 +67,7 @@
 
     <div class="tasks" id="tasks"></div>
   </div>
+  <footer id="footer" class="footer"></footer>
   <!-- TODO minify all this -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="/vendor/lodash.js"></script>
@@ -79,6 +86,7 @@
   <script src="/lib/views/project_list_view.js"></script>
   <script src="/lib/views/settings_form_view.js"></script>
   <script src="/lib/views/column_view.js"></script>
+  <script src="/lib/views/footer_view.js"></script>
   <script src="/lib/main.js"></script>
   <script>
   require('main')();

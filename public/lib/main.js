@@ -9,10 +9,12 @@ define('main', function () {
       ContainerView = require('ContainerView'),
       ColumnView = require('ColumnView'),
       StoryCollection = require('StoryCollection'),
+      FooterView = require('FooterView'),
       stories = new StoryCollection(),
       projects = new ProjectCollection(),
       BurnChart = require('BurnChart'),
       burnChart = new BurnChart(),
+      footer = new app.Model(),
       containerView = new ContainerView({
         el: '#container',
         model: projects
@@ -41,12 +43,18 @@ define('main', function () {
     model: projects
   });
 
+  new FooterView({
+    el: '#footer',
+    model: footer
+  });
+
   settings.on('change:token', updateProjects);
   settings.on('change:token', updateStories);
+  projects.on('update', setActiveProject);
+  window.addEventListener('hashchange', updateStories);
+  window.addEventListener('hashchange', setActiveProject);
 
   setInterval(updateStories, config.refreshRate);
-
-  window.addEventListener('hashchange', updateStories);
 
   stories.on('document-retrieved', function(doc) {
     burnChart.update(doc, this);
@@ -62,5 +70,9 @@ define('main', function () {
     if (settings.get('token')) {
       projects.fetch();
     }
+  }
+
+  function setActiveProject () {
+    footer.set('project', projects.get(window.location.hash.substr(2)));
   }
 });
