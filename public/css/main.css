@@ -6,7 +6,7 @@ html, body {
 
 body {
   background-color: #9F9FA0;
-  color: #404041;
+  color: #222;
 }
 
 li {
@@ -221,6 +221,13 @@ h1 {
   content: '';
 }
 
+.column li * {
+  position: relative;
+  z-index: 2;
+
+  text-shadow: #fff 1px 0 1px, #fff -1px 0 1px, #fff 0 1px 1px, #fff 1px 0 1px;
+}
+
 .column .bug:before {
   background-color: #D8002D;
 }
@@ -234,7 +241,7 @@ small {
   color: #7D1D80;
 }
 
-.estimate {
+.column .estimate {
   position: absolute;
   top: 9px;
   right: 10px;
@@ -242,7 +249,7 @@ small {
   font-weight: bold;
 }
 
-.labels {
+.column .labels {
   position: absolute;
   right: 8px;
   top: 32px;
