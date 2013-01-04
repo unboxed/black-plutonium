@@ -287,8 +287,8 @@ small {
   stroke-width: 5px;
 }
 .actual.line {
-  stroke: steelblue;
+  stroke: #bfdda0;
 }
 .ideal.line {
-  stroke: salmon;
+  stroke: #ed8d96;
 }
