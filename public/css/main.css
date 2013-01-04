@@ -261,7 +261,7 @@ small {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   padding: 10px 16px;
 
   background-color: #F2F2F2;
@@ -271,6 +271,21 @@ small {
 
 .footer h1 {
   -webkit-flex: 1;
+}
+
+.logo {
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 11px;
+  width: 166px;
+  height: 20px;
+
+  background: url(/images/logo.svg) no-repeat center;
+  background-size: cover;
+
+  text-indent: -999em;
+  overflow: hidden;
 }
 
 .legend {
