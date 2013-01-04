@@ -1,34 +1,32 @@
 define('SettingsFormView', require('app').View.extend({
   template: require('tmpl')('settingsForm'),
   events: {
-    "submit": "save"
+    "submit": "handleSave"
   },
-  save: function (e) {
+  handleSave: function (e) {
     e.preventDefault();
 
-    this.model.set('token', this.$el.find('[name=token]').val());
-    if (window.location.hash) {
-      this.model.setCurrentProjectLabels(
-        _.map(this.$el.find('[name=label]'), function (el) { return el.value; })
-      );
+    var data = {},
+        domLabels = document.getElementById('settings').getElementsByClassName('label-field'),
+        i = 0,
+        domEl,
+        name,
+        l = domLabels.length;
+
+    for (; i < l; i++) {
+      domEl = domLabels[i];
+      name = domEl.name;
+
+      if(!data[name]) {
+        data[name] = [];
+      }
+
+      data[name].push(domEl.value);
     }
+
+    data.token = this.$el.find('[name=token]').val();
+    this.model.set(data);
 
     this.model.save();
-  },
-  presenter: function () {
-    var context = this.model.toJSON(),
-        labels;
-
-    if (window.location.hash) {
-      labels = this.model.getCurrentProjectLabels();
-      context.labels = _.map(
-        ['Arrow label', 'Square Label', 'Circle label'],
-        function (name, i) {
-          return { name: name, value: labels[i] };
-        }
-      );
-    }
-
-    return context;
   }
 }));

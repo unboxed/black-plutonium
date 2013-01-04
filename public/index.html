@@ -46,19 +46,26 @@
       Pivotal API token
       <input type="text" name="token" value="{{token}}">
     </label>
-    {{#labels}}
-      <label>
-        {{name}}
-        <input type="text" name="label" value="{{value}}" />
-      </label>
-    {{/labels}}
     <button type="submit">Save</button>
   </script>
 
   <script type="text/html" data-name="projectList">
     <ul>
       {{#.}}
-        <li><a href="#/{{id}}">{{name}}</a></li>
+        <li>
+          <div class="name">
+            <a href="#/{{id}}">{{name}}</a>
+          </div>
+          <div class="label-options">
+            Labels
+            {{#labels}}
+              <label>
+                <span class="label label-{{slot}}">{{name}}</span>
+                <input type="text" class="label-field" name="project_{{id}}" value="{{value}}" />
+              </label>
+            {{/labels}}
+          </div>
+        </li>
       {{/.}}
     </ul>
   </script>

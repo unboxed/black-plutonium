@@ -38,6 +38,22 @@ li {
   border-bottom: 1px solid #231F20;
 }
 
+/* Project list */
+.project-list .name {
+  display: inline-block;
+  width: 300px;
+}
+
+.project-list .label-options {
+  display: inline-block;
+}
+
+.project-list .label {
+  vertical-align: middle;
+  margin-top: -2px;
+  margin-left: 1ex;
+}
+
 /* Column headers */
 header {
   position: relative;
