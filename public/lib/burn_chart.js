@@ -38,10 +38,14 @@ define('BurnChart', require('app').Model.extend({
     this.trigger('update');
   },
 
-  x_axis : function () {
+  x_axis : function (stop_on_date) {
     var x_axis = new Array(),
-        x = new Date(this.start_date());
-    while (x <= this.end_date()) {
+        x = new Date(this.start_date()),
+        terminator = this.end_date();
+    if ((stop_on_date !== undefined) && (stop_on_date < terminator)) {
+      terminator = stop_on_date;
+    }
+    while (x <= terminator) {
       x_axis.push( new Date (x) )
       x.setDate(x.getDate() + 1);
     }
@@ -64,7 +68,7 @@ define('BurnChart', require('app').Model.extend({
 
   actual : function () {
     var me = this;
-    return _.map(this.x_axis(), function (x) {
+    return _.map(this.x_axis(new Date), function (x) {
       return me.storyPointsOnDay(x);
     });
   },
