@@ -171,6 +171,7 @@ small {
   font-weight: bold;
 }
 
+<<<<<<< HEAD
 .labels {
   position: absolute;
   right: 8px;
@@ -232,4 +233,19 @@ small {
 .label-2 {
   border-radius: 7px;
   background-color: #E3862B;
+}
+
+.burn-chart {
+  position: relative;
+  top: -500px;
+}
+.line {
+  fill: none;
+  stroke-width: 1.5px;
+}
+.actual.line {
+  stroke: steelblue;
+}
+.ideal.line {
+  stroke: salmon;
 }

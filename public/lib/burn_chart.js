@@ -35,6 +35,7 @@ define('BurnChart', require('app').Model.extend({
   update : function (doc, story_collection) {
     this.fetchStartAndEndDates(doc);
     this.fetchTotalCommitment(story_collection);
+    this.trigger('update');
   },
 
   x_axis : function () {

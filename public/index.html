@@ -91,10 +91,12 @@
     </div>
 
     <div class="tasks" id="tasks"></div>
+    <div class="burn-chart" id="burn-chart"></div>
   </div>
   <footer id="footer" class="footer"></footer>
   <!-- TODO minify all this -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="/vendor/lodash.js"></script>
   <script src="/vendor/backbone.js"></script>
   <script src="/vendor/mustache.js"></script>
@@ -112,6 +114,7 @@
   <script src="/lib/views/settings_form_view.js"></script>
   <script src="/lib/views/column_view.js"></script>
   <script src="/lib/views/footer_view.js"></script>
+  <script src="/lib/views/burn_chart_view.js"></script>
   <script src="/lib/main.js"></script>
   <script>
   require('main')();

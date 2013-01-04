@@ -8,6 +8,7 @@ define('main', function () {
       ProjectListView = require('ProjectListView'),
       ContainerView = require('ContainerView'),
       ColumnView = require('ColumnView'),
+      BurnChartView = require('BurnChartView'),
       StoryCollection = require('StoryCollection'),
       FooterView = require('FooterView'),
       stories = new StoryCollection(),
@@ -47,6 +48,11 @@ define('main', function () {
   new FooterView({
     el: '#footer',
     model: footer
+  });
+
+  new BurnChartView({
+    el: '#burn-chart',
+    model: burnChart
   });
 
   settings.on('change:token', updateProjects);
