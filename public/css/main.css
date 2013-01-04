@@ -87,6 +87,11 @@ h1 {
   text-transform: uppercase;
 }
 
+.board {
+  position: relative;
+  height: 100%;
+}
+
 /* Story columns */
 .tasks {
   display: -webkit-flex;
@@ -235,12 +240,15 @@ small {
 }
 
 .burn-chart {
-  position: relative;
-  top: -500px;
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  right: 0px;
+  bottom: 70px;
 }
 .line {
   fill: none;
-  stroke-width: 1.5px;
+  stroke-width: 5px;
 }
 .actual.line {
   stroke: steelblue;
