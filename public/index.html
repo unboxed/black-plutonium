@@ -31,6 +31,11 @@
           {{name}}
           <span class="estimate">{{estimate}}</span>
           {{#owned_by}}<small>({{owned_by}})</small>{{/owned_by}}
+          <span class="labels">
+          {{#matched_labels}}
+            <span class="label label-{{slot}}">{{value}}</span>
+          {{/matched_labels}}
+          </span>
         </li>
       {{/issues}}
     </ul>
@@ -41,6 +46,12 @@
       Pivotal API token
       <input type="text" name="token" value="{{token}}">
     </label>
+    {{#labels}}
+      <label>
+        {{name}}
+        <input type="text" name="label" value="{{value}}" />
+      </label>
+    {{/labels}}
     <button type="submit">Save</button>
   </script>
 
@@ -56,6 +67,13 @@
     {{#project}}
       <h1>{{name}}</h1>
     {{/project}}
+    <div class="legend">
+      {{#legend}}
+        {{#value}}
+          <strong><span class="label label-{{slot}}"></span><span>{{value}}</span></strong>
+        {{/value}}
+      {{/legend}}
+    </div>
   </script>
 
   <div id="container" class="container">

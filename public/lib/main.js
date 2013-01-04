@@ -19,6 +19,10 @@ define('main', function () {
         el: '#container',
         model: projects
       }),
+      settingsForm = new SettingsFormView({
+        el: '#settings-form',
+        model: settings
+      }),
       domTasks = document.getElementById('tasks');
 
   for (var i = 0, l = config.states.length; i < l; i++) {
@@ -33,10 +37,7 @@ define('main', function () {
   updateStories();
   updateProjects();
 
-  new SettingsFormView({
-    el: '#settings-form',
-    model: settings
-  }).render();
+  settingsForm.render();
 
   new ProjectListView({
     el: '#project-list',
@@ -49,10 +50,9 @@ define('main', function () {
   });
 
   settings.on('change:token', updateProjects);
-  settings.on('change:token', updateStories);
+  settings.on('change', updateStories);
   projects.on('update', setActiveProject);
   window.addEventListener('hashchange', updateStories);
-  window.addEventListener('hashchange', setActiveProject);
 
   setInterval(updateStories, config.refreshRate);
 
@@ -63,6 +63,7 @@ define('main', function () {
   function updateStories () {
     if (window.location.hash && settings.get('token')) {
       stories.fetch();
+      setActiveProject();
     }
   }
 
@@ -74,5 +75,6 @@ define('main', function () {
 
   function setActiveProject () {
     footer.set('project', projects.get(window.location.hash.substr(2)));
+    settingsForm.render();
   }
 });

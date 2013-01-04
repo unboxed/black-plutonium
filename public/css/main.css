@@ -103,6 +103,7 @@ h1 {
   position:relative;
   padding-left: 16px;
   padding-right: 30px;
+  min-height: 35px;
 }
 
 .column li:before {
@@ -154,8 +155,15 @@ small {
   font-weight: bold;
 }
 
+.labels {
+  position: absolute;
+  right: 8px;
+  top: 32px;
+}
+
 /* Footer */
 .footer {
+  display: -webkit-flex;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -165,4 +173,47 @@ small {
   background-color: #F2F2F2;
   box-shadow: 0 -5px 5px rgba(0,0,0,0.15);
   text-shadow: 0 1px #fff;
+}
+
+.footer h1 {
+  -webkit-flex: 1;
+}
+
+.legend {
+  -webkit-flex: 5;
+}
+
+.legend span {
+  margin-right: 1ex;
+
+  vertical-align: middle;
+}
+
+/* Labels */
+.label {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-color: #009FE1;
+
+  border-radius: 1px;
+
+  overflow: hidden;
+  text-indent: -999em;
+}
+
+/* Triangle */
+.label-0 {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 7px 0 7px 12px;
+  background-color: transparent;
+  border-color: transparent transparent transparent #45AB4B;
+}
+
+/* Circle */
+.label-2 {
+  border-radius: 7px;
+  background-color: #E3862B;
 }

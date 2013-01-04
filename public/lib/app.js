@@ -36,6 +36,7 @@ define('app', (function (Backbone, store) {
               node,
               attr,
               item,
+              mapper,
               map = self.attributeMap,
               items = [];
 
@@ -43,7 +44,12 @@ define('app', (function (Backbone, store) {
             item = {};
             for (attr in map) {
               if (map.hasOwnProperty(attr)) {
-                item[attr] = utils.getValueFromXML(node, map[attr]);
+                mapper = map[attr];
+                if (mapper instanceof Array) {
+                  item[attr] = mapper[1](utils.getValueFromXML(node, mapper[0]));
+                } else {
+                  item[attr] = utils.getValueFromXML(node, mapper);
+                }
               }
             }
             items.push(item);

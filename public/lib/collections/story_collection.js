@@ -6,7 +6,10 @@ define('StoryCollection', require('app').Collection.extend({
     owned_by: 'owned_by initials',
     estimate: 'estimate',
     story_type: 'story_type',
-    accepted_at: 'accepted_at'
+    accepted_at: 'accepted_at',
+    labels: ['labels', function (val) {
+      return _.without(val.split(','), '');
+    }]
   },
   model : require('app').Model.extend({
     accepted_date : function () {
@@ -19,7 +22,7 @@ define('StoryCollection', require('app').Collection.extend({
     },
     isAccepted : function () {
       return (this.get('state') === 'accepted');
-    },
+    }
   }),
   url: function () {
     return '/projects/' + window.location.hash.substr(2) + '/iterations/current';
