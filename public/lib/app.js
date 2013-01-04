@@ -1,5 +1,6 @@
 define('app', (function (Backbone, store) {
-  var request = require('request');
+  var request = require('request'),
+      utils = require('utils');
 
   Backbone.sync = function (method, model) {
     if ('read' == method) {
@@ -42,13 +43,14 @@ define('app', (function (Backbone, store) {
             item = {};
             for (attr in map) {
               if (map.hasOwnProperty(attr)) {
-                item[attr] = getValue(node, map[attr]);
+                item[attr] = utils.getValueFromXML(node, map[attr]);
               }
             }
             items.push(item);
           }
           item = null;
           self.update(items);
+          self.trigger('document-retrieved', doc);
         });
       },
       update: function (data) {

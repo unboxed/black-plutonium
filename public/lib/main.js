@@ -1,6 +1,7 @@
 define('main', function () {
   var config = require('config'),
       app = require('app'),
+      utils = require('utils'),
       SettingsFormView = require('SettingsFormView'),
       settings = require('settings'),
       ProjectCollection = require('ProjectCollection'),
@@ -10,6 +11,8 @@ define('main', function () {
       StoryCollection = require('StoryCollection'),
       stories = new StoryCollection(),
       projects = new ProjectCollection(),
+      BurnChart = require('BurnChart'),
+      burnChart = new BurnChart(),
       containerView = new ContainerView({
         el: '#container',
         model: projects
@@ -44,6 +47,10 @@ define('main', function () {
   setInterval(updateStories, config.refreshRate);
 
   window.addEventListener('hashchange', updateStories);
+
+  stories.on('document-retrieved', function(doc) {
+    burnChart.update(doc, this);
+  });
 
   function updateStories () {
     if (window.location.hash && settings.get('token')) {
