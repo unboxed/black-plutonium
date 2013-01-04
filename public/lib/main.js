@@ -2,6 +2,7 @@ define('main', function () {
   var config = require('config'),
       app = require('app'),
       utils = require('utils'),
+      AccountSettingsView = require('AccountSettingsView'),
       SettingsFormView = require('SettingsFormView'),
       settings = require('settings'),
       ProjectCollection = require('ProjectCollection'),
@@ -35,15 +36,18 @@ define('main', function () {
     );
   }
 
-  updateStories();
-  updateProjects();
-
-  settingsForm.render();
-
-  new ProjectListView({
+  var projectList = new ProjectListView({
     el: '#project-list',
     model: projects
   });
+
+  updateStories();
+  updateProjects();
+
+  new AccountSettingsView({
+    el: '#account-settings',
+    model: settings
+  }).render();
 
   new FooterView({
     el: '#footer',
@@ -81,6 +85,6 @@ define('main', function () {
 
   function setActiveProject () {
     footer.set('project', projects.get(window.location.hash.substr(2)));
-    settingsForm.render();
+    projectList.render();
   }
 });

@@ -11,7 +11,7 @@ define('ContainerView', require('app').View.extend({
     var self = this;
     // Push to the end of the execution stack
     setTimeout(function () {
-      self.offset = self.$el.find('.settings').height();
+      self.offset = self.$el.find('.settings-form').height();
     }, 0);
     return this;
   },

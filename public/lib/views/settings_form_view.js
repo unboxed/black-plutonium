@@ -1,5 +1,4 @@
 define('SettingsFormView', require('app').View.extend({
-  template: require('tmpl')('settingsForm'),
   events: {
     "submit": "handleSave"
   },
@@ -7,7 +6,7 @@ define('SettingsFormView', require('app').View.extend({
     e.preventDefault();
 
     var data = {},
-        domLabels = document.getElementById('settings').getElementsByClassName('label-field'),
+        domLabels = this.el.getElementsByClassName('label-field'),
         i = 0,
         domEl,
         name,

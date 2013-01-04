@@ -31,11 +31,47 @@ li {
 }
 
 /* Settings form */
-.settings-form {
+.account-settings {
   padding: 10px;
   background-color: #fff;
 
   border-bottom: 1px solid #231F20;
+}
+
+.actions {
+  padding: 10px;
+  background-color: #efefef;
+  border-bottom: 1px solid #231F20;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+button {
+  position: relative;
+  padding: 10px 16px;
+
+  border: none;
+  border-radius: 4px;
+
+  background-color: #7D1D80;
+  background-image: -webkit-linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.5));
+
+  font-weight: bold;
+  font-size: 16px;
+
+  color: #fff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-transform: uppercase;
+  text-shadow: 0 -1px #000;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2),
+      inset 0 -1px 0 rgba(255,255,255,0.6),
+      inset 0 1px #000;
+  cursor: pointer;
+}
+
+button:active {
+  background-image: -webkit-linear-gradient(rgba(0,0,0,0.5) 0, rgba(0,0,0,0) 50%);
 }
 
 /* Project list */

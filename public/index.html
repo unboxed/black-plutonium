@@ -41,12 +41,11 @@
     </ul>
   </script>
 
-  <script type="text/html" data-name="settingsForm">
+  <script type="text/html" data-name="accountSettings">
     <label>
       Pivotal API token
       <input type="text" name="token" value="{{token}}">
     </label>
-    <button type="submit">Save</button>
   </script>
 
   <script type="text/html" data-name="projectList">
@@ -84,11 +83,15 @@
   </script>
 
   <div id="container" class="container">
-    <div id="settings" class="settings">
-      <form id="settings-form" class="settings-form"></form>
+    <form id="settings-form" class="settings-form">
+      <div id="account-settings" class="account-settings"></div>
 
       <div id="project-list" class="project-list"></div>
-    </div>
+
+      <div class="actions">
+        <button type="submit">Save</button>
+      </div>
+    </form>
 
     <div class="board">
       <div class="tasks" id="tasks"></div>
@@ -113,6 +116,7 @@
   <script src="/lib/burn_chart.js"></script>
   <script src="/lib/views/container_view.js"></script>
   <script src="/lib/views/project_list_view.js"></script>
+  <script src="/lib/views/account_settings_view.js"></script>
   <script src="/lib/views/settings_form_view.js"></script>
   <script src="/lib/views/column_view.js"></script>
   <script src="/lib/views/footer_view.js"></script>
