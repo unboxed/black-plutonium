@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:jpawlyn/rack-proxy.git
+  remote: git://github.com/jpawlyn/rack-proxy.git
   revision: 1ae93d1489f092403b168c68d24f2306ea1e6ebc
   specs:
     rack-proxy (0.3.7)
