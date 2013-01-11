@@ -1,4 +1,9 @@
-# This file is used by Rack-based servers to start the application.
+require './lib/pivotal_proxy'
 
-require ::File.expand_path('../config/environment',  __FILE__)
-run BlackPlutonium::Application
+map '/services' do
+  run PivotalProxy.new
+end
+map '/' do
+  use Rack::Static, urls: [""], root: File.expand_path('public'), index: 'index.html'
+  run lambda {|*|}
+end
