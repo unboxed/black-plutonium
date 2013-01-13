@@ -25,6 +25,10 @@ define('main', function () {
         el: '#settings-form',
         model: settings
       }),
+      projectList = new ProjectListView({
+        el: '#project-list',
+        model: projects
+      }),
       domTasks = document.getElementById('tasks');
 
   for (var i = 0, l = config.states.length; i < l; i++) {
@@ -35,11 +39,6 @@ define('main', function () {
       }).el
     );
   }
-
-  var projectList = new ProjectListView({
-    el: '#project-list',
-    model: projects
-  });
 
   updateStories();
   updateProjects();
