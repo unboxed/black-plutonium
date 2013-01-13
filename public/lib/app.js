@@ -70,7 +70,9 @@ define('app', (function (Backbone, store) {
         return this.model.toJSON();
       },
       render: function () {
+        this.trigger('beforerender');
         this.el.innerHTML = Mustache.render(this.template, this.presenter());
+        this.trigger('render');
 
         return this;
       }
