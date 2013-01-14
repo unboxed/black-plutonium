@@ -1,7 +1,9 @@
 define('IssueView', require('app').View.extend({
+  tagName: 'li',
   template: require('tmpl')('issue'),
   initialize: function () {
     this.settings = require('settings');
+    this.on('render', this.afterRender);
   },
   presenter: function () {
     var context = this.model.toJSON(),
@@ -23,5 +25,8 @@ define('IssueView', require('app').View.extend({
     context.matched_labels = match;
     
     return context;
+  },
+  afterRender: function () {
+    this.$el.addClass(this.model.get('story_type'));
   }
 }));

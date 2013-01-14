@@ -29,16 +29,14 @@
   </script>
 
   <script type="text/html" data-name="issue">
-    <li class="{{story_type}}">
-      <span class="name">{{name}}</span>
-      <span class="estimate">{{estimate}}</span>
-      {{#owned_by}}<small>({{owned_by}})</small>{{/owned_by}}
-      <span class="labels">
-      {{#matched_labels}}
-        <span class="label label-{{slot}}">{{value}}</span>
-      {{/matched_labels}}
-      </span>
-    </li>
+    <span class="name">{{name}}</span>
+    <span class="estimate">{{estimate}}</span>
+    {{#owned_by}}<small>({{owned_by}})</small>{{/owned_by}}
+    <span class="labels">
+    {{#matched_labels}}
+      <span class="label label-{{slot}}">{{value}}</span>
+    {{/matched_labels}}
+    </span>
   </script>
 
   <script type="text/html" data-name="accountSettings">
