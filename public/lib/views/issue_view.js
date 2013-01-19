@@ -26,7 +26,26 @@ define('IssueView', require('app').View.extend({
     
     return context;
   },
-  afterRender: function () {
-    this.$el.addClass(this.model.get('story_type'));
+  reposition: function () {
+    var current = this.model.get('current') || { left: 0, top: 0 },
+        original = this.model.get('original') || { left: -screen.width, top: 0},
+        left = original.left - current.left,
+        top = original.top - current.top;
+
+    this.$el
+      .addClass(this.model.get('story_type'))
+      .css({
+        'webkitTransform': 'translate3d(' + left + 'px, ' + top + 'px, 0)',
+        'webkitTransition': 'none'
+      });
+  },
+  storePosition: function (key) {
+    this.model.set(key, this.$el.position());
+  },
+  resetPosition: function () {
+    this.$el.css({
+      'webkitTransform': 'translate3d(0, 0, 0)',
+      'webkitTransition': '-webkit-transform 0.5s ease-out'
+    });
   }
 }));

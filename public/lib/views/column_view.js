@@ -3,17 +3,18 @@ define('ColumnView', require('app').View.extend({
   className: 'column',
   template: require('tmpl')('column'),
   initialize: function () {
+    this.items = [];
     this.settings = require('settings');
+
+    this.model.on('beforeupdate', this.beforeUpdate, this);
     this.model.on('update', this.render, this);
-    this.on('render', function () {
-      _.each(this.model.where({ state: this.options.state }), this.addOne, this);
-    });
+    this.on('render', this.afterRender);
   },
   ItemView: require('IssueView'),
   addOne: function (model) {
-    this.$el.find('ul').append(
-      new this.ItemView({ model: model }).render().el
-    );
+    var item = new this.ItemView({ model: model }).render();
+
+    return item;
   },
   presenter: function () {
     var items = this.model.where({ state: this.options.state }),
@@ -26,5 +27,21 @@ define('ColumnView', require('app').View.extend({
         return memo + (Math.max(0, parseInt(m.get('estimate'), 10)) || 0);
       }, 0)
     };
+  },
+  beforeUpdate: function () {
+    _.invoke(this.items, 'storePosition', 'original');
+  },
+  afterRender: function () {
+    var issues = this.model.where({ state: this.options.state }),
+        items = this.items = _.map(issues, this.addOne, this);
+
+    this.$el.find('ul').html(_(items).pluck('el'));
+
+    _.invoke(items, 'storePosition', 'current');
+    _.invoke(items, 'reposition');
+
+    setTimeout(function () {
+      _.invoke(items, 'resetPosition');
+    }, 1000);
   }
 }));

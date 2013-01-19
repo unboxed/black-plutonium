@@ -60,6 +60,7 @@ define('app', (function (Backbone, store) {
         });
       },
       update: function (data) {
+        this.trigger('beforeupdate');
         Backbone.Collection.prototype.update.call(this, data);
         this.trigger('update');
         return this;

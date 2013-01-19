@@ -11,7 +11,7 @@ define('StoryCollection', require('app').Collection.extend({
       return _.without(val.split(','), '');
     }]
   },
-  model : require('app').Model.extend({
+  model: require('app').Model.extend({
     accepted_date : function () {
       var d = Date.parse(this.get('accepted_at'));
       if (isNaN(d)) {
