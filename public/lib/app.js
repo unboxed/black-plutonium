@@ -6,7 +6,7 @@ define('app', (function (Backbone, store) {
     if ('read' == method) {
       model.set(
         JSON.parse(store.getItem(model.id)),
-        {silent: true}
+        { silent: true }
       );
     }
 
@@ -22,6 +22,7 @@ define('app', (function (Backbone, store) {
 
   return {
     Model: Backbone.Model,
+    Events: Backbone.Events,
     Collection: Backbone.Collection.extend({
       url: '/',
       rootQuery: '/',
