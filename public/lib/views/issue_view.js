@@ -45,7 +45,7 @@ define('IssueView', require('app').View.extend({
   resetPosition: function () {
     this.$el.css({
       'webkitTransform': 'translate3d(0, 0, 0)',
-      'webkitTransition': '-webkit-transform 0.5s ease-out'
+      'webkitTransition': '-webkit-transform 0.5s ease-in-out'
     });
   }
 }));
