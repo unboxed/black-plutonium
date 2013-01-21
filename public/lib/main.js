@@ -2,6 +2,7 @@ define('main', function () {
   var config = require('config'),
       app = require('app'),
       utils = require('utils'),
+      currentProject = require('currentProject'),
       AccountSettingsView = require('AccountSettingsView'),
       SettingsFormView = require('SettingsFormView'),
       settings = require('settings'),
@@ -70,7 +71,7 @@ define('main', function () {
   });
 
   function updateStories () {
-    if (window.location.hash && settings.get('token')) {
+    if (currentProject() && settings.get('token')) {
       stories.fetch();
       setActiveProject();
     }
@@ -83,7 +84,7 @@ define('main', function () {
   }
 
   function setActiveProject () {
-    footer.set('project', projects.get(window.location.hash.substr(2)));
+    footer.set('project', projects.get(currentProject()));
     projectList.render();
   }
 });

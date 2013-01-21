@@ -1,7 +1,8 @@
 define('settings', (function () {
-  var Model = new require('app').Model.extend({
+  var currentProject = require('currentProject'),
+      Model = new require('app').Model.extend({
         getCurrentProjectLabels: function () {
-          return this.get('project_' + window.location.hash.substr(2)) || [];
+          return this.get('project_' + currentProject()) || [];
         }
       }),
       model = new Model({
