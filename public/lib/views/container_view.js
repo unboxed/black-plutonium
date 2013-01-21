@@ -16,7 +16,9 @@ define('ContainerView', require('app').View.extend({
     return this;
   },
   hideSettings: function () {
-    this.el.style[this.translateProp] = 'translate3d(0px, -' + this.offset + 'px, 0px)';
+    if (require('currentProject')()) {
+      this.el.style[this.translateProp] = 'translate3d(0px, -' + this.offset + 'px, 0px)';
+    }
   },
   showSettings: function () {
     this.el.style[this.translateProp] = 'translate3d(0px, 0px, 0px)';
