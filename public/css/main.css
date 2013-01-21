@@ -158,14 +158,14 @@ h1 {
 
 /* Story columns */
 .tasks {
-  display: -webkit-flex;
-  display: flex;
+  display: table;
+  table-layout: fixed;
   height: 100%;
+  width: 100%;
 }
 
 .column {
-  -webkit-flex: 1;
-  flex: 1;
+  display: table-cell;
   height: 100%;
   box-sizing: border-box;
 
@@ -187,7 +187,9 @@ h1 {
   position:relative;
   padding-left: 16px;
   padding-right: 30px;
-  min-height: 35px;
+  min-height: 55px;
+  width: 100%;
+  box-sizing: border-box;
 
   background-image: -webkit-linear-gradient(#fff 70%, #ddd 100%);
 }
