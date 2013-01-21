@@ -221,9 +221,6 @@ h1 {
 }
 
 .column li * {
-  position: relative;
-  z-index: 2;
-
   text-shadow: #fff 1px 0 1px, #fff -1px 0 1px, #fff 0 1px 1px, #fff 1px 0 1px;
 }
 
