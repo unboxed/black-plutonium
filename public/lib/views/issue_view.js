@@ -36,7 +36,11 @@ define('IssueView', require('app').View.extend({
       .addClass(this.model.get('story_type'))
       .css({
         'webkitTransform': 'translate3d(' + left + 'px, ' + top + 'px, 0)',
-        'webkitTransition': 'none'
+        'webkitTransition': 'none',
+        'mozTransform': 'translate3d(' + left + 'px, ' + top + 'px, 0)',
+        'mozTransition': 'none',
+        'transform': 'translate3d(' + left + 'px, ' + top + 'px, 0)',
+        'transition': 'none'
       });
   },
   storePosition: function (key) {
@@ -45,7 +49,11 @@ define('IssueView', require('app').View.extend({
   resetPosition: function () {
     this.$el.css({
       'webkitTransform': 'translate3d(0, 0, 0)',
-      'webkitTransition': '-webkit-transform 0.5s ease-in-out'
+      'webkitTransition': '-webkit-transform 0.5s ease-in-out',
+      'mozTransform': 'translate3d(0, 0, 0)',
+      'mozTransition': '-moz-transform 0.5s ease-in-out',
+      'transform': 'translate3d(0, 0, 0)',
+      'transition': 'transform 0.5s ease-in-out'
     });
   }
 }));
