@@ -17,6 +17,9 @@ class PivotalProxy < Rack::Proxy
   def rewrite_response(triplet)
     status, headers, body = triplet
     headers.reject! {|k,v| k.downcase == 'status' }
+    # We'll flatten the response when we return so it won't be chunked
+    # anymore and robust clients will complain about that.
+    headers.reject! {|k,v| k.downcase == 'transfer-encoding' && v.downcase == 'chunked' }
     [status, headers, body]
   end
 end
