@@ -27,5 +27,11 @@ define('StoryCollection', require('app').Collection.extend({
   url: function () {
     return '/projects/' + window.location.hash.substr(2) + '/iterations/current';
   },
-  rootQuery: '/iterations/iteration/stories/story'
+  rootQuery: '/iterations/iteration/stories/story',
+  byState: function(states) {
+    filtered = this.filter(function(story) {
+      return _.contains(states, story.get("state"));
+      });
+    return filtered;
+  }
 }));

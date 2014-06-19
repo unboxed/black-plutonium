@@ -17,11 +17,11 @@ define('ColumnView', require('app').View.extend({
     return item;
   },
   presenter: function () {
-    var items = this.model.where({ state: this.options.state }),
+    var items = this.model.byState(this.options.state.states),
         labels = this.settings.getCurrentProjectLabels();
 
     return {
-      state: this.options.state,
+      state_name: this.options.state.name,
       issue_count: items.length,
       total_points: _.reduce(items, function (memo, m) {
         return memo + (Math.max(0, parseInt(m.get('estimate'), 10)) || 0);
@@ -32,7 +32,7 @@ define('ColumnView', require('app').View.extend({
     _.invoke(this.items, 'storePosition', 'original');
   },
   afterRender: function () {
-    var issues = this.model.where({ state: this.options.state }),
+    var issues = this.model.byState(this.options.state.states),
         items = this.items = _.map(issues, this.addOne, this);
 
     this.$el.find('ul').html(_(items).pluck('el'));
